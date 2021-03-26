@@ -1,6 +1,16 @@
 import './App.css';
 import React from 'react';
 
+function oneFalse(boolArray){
+    let total = 0;
+    for (let i in boolArray){
+        if (!boolArray[i]){
+            total++;
+        }
+    }
+    return total === 1;
+}
+
 function App() {
 
         let values = [30,20,50];
@@ -27,13 +37,17 @@ class SliderBlock extends React.Component {
         locks[e.target.id] = e.target.className === "slider-locked";
         this.setState({locks: locks});
     }
-	
+
     updateValue(e){
+        if(oneFalse(this.state.locks) || e.target.className === "slider-locked"){
+            return;
+        }
         if(this.state.values.length > 1){
             let allValues = this.state.values;
             allValues[e.target.id] = parseInt(e.target.value);
             let total = allValues.reduce((acc, cur) => acc+=cur);
             let i = this.state.lastSlider;
+            let loopCount = 0;
             while(total !== 100){
                 if (i === allValues.length){i = 0};
                 if (i !== parseInt(e.target.id) && total !== 100 && !this.state.locks[i]){
@@ -49,6 +63,13 @@ class SliderBlock extends React.Component {
                             }
                         }
                         i++;
+                        loopCount++;
+                        console.log("Loop Count: " + loopCount);
+                        if (loopCount === 100){
+                            break;
+                        }
+                    } else if(total === 100){
+                    break;
                     } else {
                     i++;
                 }
@@ -57,7 +78,6 @@ class SliderBlock extends React.Component {
         }
     }
     render(){
-        console.log(this.state.values);
         let sliders = [];
         for (let i in this.state.values){
             sliders.push(
@@ -72,9 +92,8 @@ class SliderBlock extends React.Component {
                 {sliders}
                 <h1>Total: {this.state.values.reduce((acc, cur) => acc+=cur)}</h1>
             </div>
-            )
-    }
-
+            );
+    }      
 }
 
 export default App;
