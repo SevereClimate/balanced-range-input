@@ -1,0 +1,81 @@
+#root {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    border-radius: 12.5px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+.lock-button{
+  width: 20px;
+  height: 20px;
+  background-color:rgb(28, 157, 251);
+  background-image: url('lock.png');
+}
+
+  .slider-locked {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    border-radius: 12.5px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 12.5px;
+    background: rgb(28, 157, 251);
+    cursor: pointer;
+    transition: background-image 0.5s background-color 1s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background-image: url("./lock.png");
+    background-size:70%;
+    background-color: rgb(122, 200, 255);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: background-image 0.5s background-color 1s;
+}
+
+.slider-locked::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 12.5px;
+    cursor: pointer;
+    background-image: url("./lock.png");
+    background-color: tomato;
+    background-size:70%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: background-image 0.5s background-color 1s;
+}
+
+.slider-locked::-webkit-slider-thumb:hover {
+  background-image: url("./unlock.png");
+  transition: background-image 0.5s background-color 1s;
+}
