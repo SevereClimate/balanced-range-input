@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
 
+//just adding a comment here
+
 function oneFalse(boolArray){
     let total = 0;
     for (let i in boolArray){
