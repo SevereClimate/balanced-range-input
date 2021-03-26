@@ -49,9 +49,12 @@ class SliderBlock extends React.Component {
             allValues[e.target.id] = parseInt(e.target.value);
             let total = allValues.reduce((acc, cur) => acc+=cur);
             let i = this.state.lastSlider;
-            let loopCount = 0;
             while(total !== 100){
                 if (i === allValues.length){i = 0};
+                if (total > 100){
+                    allValues[e.target.id] --;
+                    total --;
+                }
                 if (i !== parseInt(e.target.id) && total !== 100 && !this.state.locks[i]){
                     if(total > 100){
                             if(allValues[i] !== 0){
@@ -65,11 +68,6 @@ class SliderBlock extends React.Component {
                             }
                         }
                         i++;
-                        loopCount++;
-                        console.log("Loop Count: " + loopCount);
-                        if (loopCount === 100){
-                            break;
-                        }
                     } else if(total === 100){
                     break;
                     } else {
